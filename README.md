@@ -26,21 +26,19 @@ A comprehensive collection of React concepts with production-ready examples and 
 
 Each file follows this consistent format:
 
-\`\`\`javascript
-/\*\*
-
-- TOPIC: Topic Name
-- DESCRIPTION: Overview of the concept
-  \*/
+```javascript
+/**
+ * TOPIC: Topic Name
+ * DESCRIPTION: Overview of the concept
+ */
 
 // ---------------------------
 // 1. SECTION NAME
 // ---------------------------
 
-/\*\*
-
-- Detailed explanation
-  \*/
+/**
+ * Detailed explanation
+ */
 
 // Code examples...
 
@@ -48,15 +46,14 @@ Each file follows this consistent format:
 // SUMMARY & BEST PRACTICES
 // ---------------------------
 
-/\*\*
-
-- KEY POINTS:
-- 1.  ...
--
-- BEST PRACTICES:
-- - ...
-    \*/
-    \`\`\`
+/**
+ * KEY POINTS:
+ * 1. ...
+ *
+ * BEST PRACTICES:
+ * - ...
+ */
+```
 
 ## Quick Links
 
