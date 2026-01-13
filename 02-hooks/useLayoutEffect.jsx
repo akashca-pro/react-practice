@@ -166,18 +166,24 @@ function Tooltip({ targetRef, children }) {
  */
 
 function WhenToUse() {
+  const elementRef = useRef(null);
+
   // useEffect: Non-visual side effects
   useEffect(() => {
     document.title = 'Page Title';
     fetch('/api/data');
-    analytics.track('page_view');
+    // analytics.track('page_view'); // Uncomment with your analytics library
   });
 
   // useLayoutEffect: Visual DOM operations
   useLayoutEffect(() => {
-    const { height } = element.getBoundingClientRect();
-    // Update based on measurement
+    if (elementRef.current) {
+      const { height } = elementRef.current.getBoundingClientRect();
+      // Update based on measurement
+    }
   });
+
+  return <div ref={elementRef}>Content</div>;
 }
 
 // -------------------------------------------------------------------------------------------

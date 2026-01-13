@@ -6,7 +6,11 @@
  * unnecessary calculations on every render.
  */
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useCallback, memo } from 'react';
+
+// Placeholder component for examples
+const ChildComponent = memo(({ data }) => <div>{data.processed ? 'Processed' : 'Not processed'}</div>);
+const UserGrid = ({ users }) => <div>{users.length} users</div>;
 
 // -------------------------------------------------------------------------------------------
 // 1. BASIC USAGE

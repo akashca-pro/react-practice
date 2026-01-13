@@ -6,7 +6,21 @@
  * that depend on function props.
  */
 
-import { useCallback, useState, memo } from 'react';
+import { useCallback, useState, memo, useEffect, useMemo } from 'react';
+
+// Helper function for debounce example
+function debounce(fn, delay) {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// Placeholder for expensive calculation example
+function expensiveCalculation() {
+  return 42;
+}
 
 // -------------------------------------------------------------------------------------------
 // 1. BASIC USAGE
@@ -36,6 +50,15 @@ function ParentComponent() {
     </div>
   );
 }
+
+// Placeholder components for examples
+const MemoizedList = memo(function MemoizedList({ items, onItemClick }) {
+  return <ul>{items.map(item => <li key={item.id} onClick={() => onItemClick(item.id)}>{item.name}</li>)}</ul>;
+});
+
+const MemoizedItem = memo(function MemoizedItem({ item, onDelete }) {
+  return <li>{item.name} <button onClick={() => onDelete(item.id)}>Delete</button></li>;
+});
 
 // -------------------------------------------------------------------------------------------
 // 2. WITH React.memo

@@ -83,20 +83,34 @@ const FormField = forwardRef(function FormField({ label, error, ...props }, ref)
 // 4. WITH TypeScript
 // -------------------------------------------------------------------------------------------
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-}
+/**
+ * WITH TypeScript (in .tsx files):
+ *
+ * interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+ *   label?: string;
+ * }
+ *
+ * const TypedInput = forwardRef<HTMLInputElement, InputProps>(
+ *   function TypedInput({ label, ...props }, ref) {
+ *     return (
+ *       <div>
+ *         {label && <label>{label}</label>}
+ *         <input ref={ref} {...props} />
+ *       </div>
+ *     );
+ *   }
+ * );
+ */
 
-const TypedInput = forwardRef<HTMLInputElement, InputProps>(
-  function TypedInput({ label, ...props }, ref) {
-    return (
-      <div>
-        {label && <label>{label}</label>}
-        <input ref={ref} {...props} />
-      </div>
-    );
-  }
-);
+// JSX equivalent (without TypeScript):
+const TypedInput = forwardRef(function TypedInput({ label, ...props }, ref) {
+  return (
+    <div>
+      {label && <label>{label}</label>}
+      <input ref={ref} {...props} />
+    </div>
+  );
+});
 
 // -------------------------------------------------------------------------------------------
 // 5. COMBINING WITH useImperativeHandle

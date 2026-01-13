@@ -91,7 +91,9 @@ function CounterWithFunctionalUpdates() {
     setCount((prev) => prev + 1);
   };
 
-  const toggle = () => setCount((prev) => !prev);
+  // Note: toggle pattern should use boolean state, not number
+  // const [isOn, setIsOn] = useState(false);
+  // const toggle = () => setIsOn((prev) => !prev);
 
   return <button onClick={incrementThree}>{count}</button>;
 }

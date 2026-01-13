@@ -6,7 +6,17 @@
  * state across many components.
  */
 
-import { createContext, useContext, useState, useMemo } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
+
+// Placeholder functions for examples
+const checkAuth = () => Promise.resolve(null);
+const loginApi = (credentials) => Promise.resolve({ name: 'User' });
+const logoutApi = () => Promise.resolve();
+
+// Placeholder components for examples
+const NotificationProvider = ({ children }) => children;
+const MainContent = () => <div>Main Content</div>;
+const MyContext = createContext(null);
 
 // -------------------------------------------------------------------------------------------
 // 1. CREATING AND USING CONTEXT

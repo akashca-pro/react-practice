@@ -56,6 +56,8 @@ function Timer() {
   const intervalRef = useRef(null);
 
   const start = () => {
+    // Prevent stacking multiple intervals
+    if (intervalRef.current !== null) return;
     intervalRef.current = setInterval(() => {
       setSeconds((s) => s + 1);
     }, 1000);
@@ -63,7 +65,13 @@ function Timer() {
 
   const stop = () => {
     clearInterval(intervalRef.current);
+    intervalRef.current = null; // Reset after clearing
   };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   return (
     <div>
@@ -76,12 +84,23 @@ function Timer() {
 
 function RenderCounter() {
   const renderCount = useRef(0);
+  const [, forceUpdate] = useState(0);
 
   useEffect(() => {
     renderCount.current += 1;
   });
 
-  return <p>Renders: {renderCount.current}</p>;
+  // NOTE: Accessing ref.current in render is generally discouraged.
+  // This works here because we're displaying the count AFTER render completes.
+  // For truly reactive display, sync to state:
+  const displayCount = renderCount.current;
+
+  return (
+    <div>
+      <p>Renders: {displayCount}</p>
+      <button onClick={() => forceUpdate((n) => n + 1)}>Force Update</button>
+    </div>
+  );
 }
 
 // -------------------------------------------------------------------------------------------
@@ -175,14 +194,26 @@ function Comparison() {
   const refValue = useRef(0);
 
   const incrementState = () => setStateValue((s) => s + 1); // Re-renders
-  const incrementRef = () => { refValue.current += 1; }; // No re-render
+  const incrementRef = () => {
+    refValue.current += 1;
+    console.log('Ref value (check console):', refValue.current);
+  };
 
-  console.log('Render');
+  console.log('Render triggered');
+
+  /**
+   * IMPORTANT: We avoid displaying refValue.current in JSX because:
+   * 1. It won't update when ref changes (no re-render)
+   * 2. React's rules discourage reading refs during render
+   * 3. The displayed value could be stale/inconsistent
+   *
+   * To observe ref changes, check the console or sync to state.
+   */
 
   return (
     <div>
       <p>State: {stateValue}</p>
-      <p>Ref: {refValue.current}</p>
+      <p>Ref: (see console - refs don't trigger re-renders)</p>
       <button onClick={incrementState}>Inc State</button>
       <button onClick={incrementRef}>Inc Ref (no re-render)</button>
     </div>

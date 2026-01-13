@@ -6,7 +6,30 @@
  * from crashing due to errors in a part of the UI.
  */
 
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, useState, useEffect } from 'react';
+
+// NOTE: For TypeScript types, use: import { ErrorInfo, ReactNode } from 'react';
+
+// Placeholder components for examples
+const MyComponent = () => <div>My Component</div>;
+const Header = () => <header>Header</header>;
+const Sidebar = () => <aside>Sidebar</aside>;
+const Widget = (props) => <div>Widget: {props.title}</div>;
+const UserProfile = ({ userId }) => <div>User: {userId}</div>;
+const widgets = [{ id: 1, title: 'Widget 1' }];
+
+// Placeholder functions for examples
+const fetchUser = (userId) => Promise.resolve({ name: 'User' });
+const fetchData = () => Promise.resolve({});
+const riskyOperation = () => { throw new Error('Risk!'); };
+
+// Mock Sentry for logging example
+const Sentry = { captureException: (e, opts) => console.error('Sentry:', e) };
+
+// Placeholder fallback components
+const MainErrorFallback = ({ error }) => <div>Main Error: {error?.message}</div>;
+const SidebarErrorFallback = ({ error }) => <div>Sidebar Error</div>;
+const WidgetError = ({ error }) => <div>Widget Error</div>;
 
 // -------------------------------------------------------------------------------------------
 // 1. BASIC ERROR BOUNDARY
