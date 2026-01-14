@@ -11,7 +11,7 @@ A comprehensive collection of React concepts with production-ready examples and 
 | 03-state-management         | 6     | Context API, useReducer, Zustand, Redux Toolkit, Jotai   |
 | 04-component-patterns       | 9     | Composition, Render Props, HOCs, Compound, forwardRef    |
 | 05-performance-optimization | 4     | React.memo, Code Splitting, Virtualization, Profiling    |
-| 06-routing                  | 4     | React Router basics, Protected Routes, Nested Routes     |
+| 06-routing                  | 5     | React Router basics, Data APIs (v6.4+), Protected Routes |
 | 07-forms-and-validation     | 4     | Controlled Forms, React Hook Form, Zod                   |
 | 08-data-fetching            | 3     | TanStack Query, SWR, Fetch/Axios                         |
 | 09-testing                  | 4     | React Testing Library, Hooks, Mocking, Integration       |
@@ -20,7 +20,7 @@ A comprehensive collection of React concepts with production-ready examples and 
 | 12-styling                  | 4     | CSS Modules, Tailwind CSS, Styled Components, Animations |
 | 13-redux                    | 9     | Comprehensive Redux, Toolkit, RTK Query, Best Practices  |
 
-**Total: 78 files**
+**Total: 79 files**
 
 ## File Format
 
@@ -128,9 +128,10 @@ Each file follows this consistent format:
 ### Routing
 
 - [Basic Routing](./06-routing/basicRouting.jsx)
-- [Protected Routes](./06-routing/protectedRoutes.jsx)
 - [Nested Routes](./06-routing/nestedRoutes.jsx)
+- [Protected Routes](./06-routing/protectedRoutes.jsx)
 - [Route Hooks](./06-routing/routeHooks.jsx)
+- [Data Routing (v6.4+)](./06-routing/dataRouting.jsx)
 
 ### Forms and Validation
 
